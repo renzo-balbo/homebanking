@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Account</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles/style2.css">
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://fonts.google.com/specimen/Kaisei+Opti">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+</head>
+
+<body>
+    <div id="app" class="col-12">
+
+        <header class="col-12 d-flex justify-content-center align-items-center">
+
+            <div class="d-flex col">
+                <button class="btn verde ms-1 ms-md-3 d-flex align-items-center justify-content-center" type="button"
+                    data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"
+                    id="offcanvasButton">
+                    <i class="bi bi-list"></i>
+                </button>
+
+                <div class="offcanvas offcanvas-start negro" tabindex="-1" id="offcanvasExample"
+                    aria-labelledby="offcanvasExampleLabel">
+
+                    <div class="offcanvas-header verde">
+                        <h5 class="offcanvas-title" id="offcanvasExampleLabel">RLBP Bank</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+
+                    <div class="offcanvas-body text-white">
+
+                        <div class="list-group">
+                            <h4 class="border-bottom">Account Options</h4>
+                            <a href="./accounts.html" class="list-group-item list-group-item-action negro text-white border-bottom"
+                                aria-current="true">
+                                Accounts
+                            </a>
+                            <a href="#"
+                                class="list-group-item list-group-item-action negro text-white border-bottom">Transactions</a>
+                            <a href="#"
+                                class="list-group-item list-group-item-action negro text-white border-bottom">Buy & sell
+                                dollars</a>
+                            <a href="#"
+                                class="list-group-item list-group-item-action negro text-white border-bottom">Get a new
+                                card</a>
+                            <a href="#"
+                                class="list-group-item list-group-item-action negro text-white border-bottom">Loans</a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="d-flex col justify-content-center">
+                <a href="./accounts.html">
+                    <img class="d-none d-md-block" src="./img/logo.png" alt="">
+                    <img class="d-md-none" src="./img/logosmall.png" alt="">
+                </a>
+            </div>
+
+            <div class="d-flex col justify-content-end me-1 me-md-3">
+
+                <button class="navButton bg-white verde d-flex align-items-center me-4 justify-content-center">
+                    <i class="bi bi-bell-fill"></i>
+                </button>
+
+                <a href="#" class="">
+                    <button class="navButton bg-white verde d-flex align-items-center justify-content-center">
+                        <i class="bi bi-person-fill"></i>
+                    </button>
+                </a>
+
+            </div>
+
+        </header>
+
+        <main class="col-12 d-flex justify-content-center gris">
+
+
+            <div class="col-12 col-md-8">
+                <div class="mt-5 bg-white extraContent animate__animated animate__slideInRight">
+
+                    <div class="col-12 d-flex justify-content-around p-4 border-bottom">
+                        <h2 class="verde">Account <span style="font-weight: 700;"
+                                class="text-black">{{account.number}}</span></h2>
+
+                        <button class="dropdown">
+                            <a class="dropdown-toggle text-black" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <i class="bi bi-arrow-left-right ms-2 me-2"></i>
+                                Operations
+                            </a>
+
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Buy & sell dollars</a></li>
+                                <li><a class="dropdown-item" href="#">Transfer</a></li>
+                            </ul>
+                        </button>
+
+                    </div>
+
+                    <h3 class="mt-4 verde text-center p-4">Balance: <span style="font-weight: 700;"
+                            class="text-black">${{account.balance}}</span></h3>
+                </div>
+
+
+
+                <!-- -- TRANSACTION TABLE --  -->
+
+                <table class="table bg-white mt-5 text-center animate__animated animate__slideInLeft">
+                    <thead>
+                        <legend class="text-center mt-4 mb-1 fw-bolder animate__animated animate__slideInLeft">Transactions</legend>
+                        <tr class="text-black">
+                            <th scope="col">Amount</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="transaction in transactions">
+                            <td v-if="transaction.amount > 0" style="color: green;" scope="row">${{transaction.amount}}
+                            </td>
+                            <td v-else style="color: red;">${{transaction.amount}}</td>
+                            <td v-if="transaction.type== 'DEBIT'" style="color: red;">{{transaction.type}}</td>
+                            <td v-else style="color: green;">{{transaction.type}}</td>
+                            <td class="text-black">{{transaction.description}}</td>
+                            <td class="text-black">{{transaction.date}}</td>
+                        </tr>
+                        <tr v-if="transactions.length == 0">
+                            <th colspan="4" class="fs-3">You have no transactions in this account... yet ;)</th>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+
+
+
+                <!-- -- EXTRA CONTENT --  -->
+
+                <div class="card animate__animated animate__slideInRight mb-3">
+                    <div class="row g-0">
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 class="card-title fs-1 fw-bold mt-5 mb-4" style="color: red;"><span style="font-style:italic">"How can I apply for a loan?"</span></h5>
+                          <p class="fs-3 mt-5">Applying for a personal loan is similar to applying for a credit card. You'll need to enter your personal information, your financial information and the details about your desired loan. Before approving you, the lender will run a hard credit check, which may temporarily lower your credit score. If your financial picture and credit score are sufficient for the lender — often, you need a credit score in the mid-600s — the lender will set your interest rate, loan amount and terms</p>
+                        </div>
+                      </div>
+        
+                      <div class="col-md-4 d-flex justify-content-end">
+                      <img src="./img/thinking.png" class="img-fluid rounded-end" alt="...">
+                      </div>
+                      
+        
+                    </div>
+                  </div>
+
+
+            </div>
+        </main>
+
+        <footer class="d-flex col-12 negro justify-content-end align-items-center">
+        </footer>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="./js/account.js"></script>
+</body>
+
+</html>

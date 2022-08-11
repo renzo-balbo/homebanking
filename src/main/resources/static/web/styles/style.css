@@ -1,0 +1,176 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
+
+.rojo{
+    background-color: red;
+}
+
+.azul{
+    background-color: rgb(225, 225, 255);
+}
+
+.verde{
+    color: red !important;
+}
+
+.amarillo{
+    background-color: yellow;
+}
+
+.rosa{
+    background-color: pink;
+}
+
+.celeste{
+    background-color: aqua;
+}
+
+.violeta{
+    background-color: blueviolet;
+}
+
+.negro{
+    background-color: #111111 !important;
+}
+
+.gris{
+    background-color: rgb(241, 239, 239);
+}
+
+header{
+    min-height: 20vh;
+
+}
+
+header img{
+    height: 7vh !important;
+}
+
+#offcanvasButton{
+    background-color: white !important;
+    border: solid 2px red;
+    height: 2.5rem;
+    width: 3rem;
+    font-size: 2rem;
+}
+
+.navButton{
+    border-radius: 360px;
+    border: solid 1px red;
+    font-size: 1.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.navButton:hover, #offcanvasButton:hover{
+    background-color: red !important;
+    color: white !important;
+    border: none;
+}
+
+
+
+
+
+
+main{
+    min-height: 88vh;
+}
+
+
+.carousel{
+    height: 588px;
+    width: 80vw;
+}
+
+.carousel-item, .carousel-item img{
+    height: 588px;
+}
+
+
+
+
+.accountCard{
+    border: solid 2px red;
+    border-radius: 10px;
+    width: 20rem;
+    color: black;
+}
+
+a{
+    text-decoration: none;
+}
+
+/* button{
+    border-radius: 10px;
+    border: solid 1px black;
+    background: none;
+}
+
+button:hover{
+    border: solid 1px black;
+    color: white !important;
+    background-color: red;
+} */
+
+.quickAccesLink{
+    background-color: white;
+    border: solid 2px red;
+    border-radius: 10px;
+    height: 9rem;
+    width: 8rem;
+}
+
+.quickAccesLink:hover{
+    transform: scale(1.1);
+}
+
+.extraContent{
+    border-radius: 10px;
+    border: solid 1px black;
+}
+
+.extraContent img{
+    border-radius: 60px;
+}
+
+table{
+    border-radius: 10px;
+}
+
+tbody>tr:hover{
+    background-color: #c4c4c4;
+    transform: scaleX(1.05);
+}
+
+#getCardExplanation{
+    height: 39rem !important;
+}
+
+#cardExplanationImg{
+    border-start-start-radius: 5px;
+    border-end-start-radius: 5px;
+    height: 39rem !important;
+    background-image: url(../img/surprise.jpeg);
+    background-size:cover ;
+    font-style:italic;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+
+
+#participatingStore{
+    background-image: url(../img/starbucs.jpg);
+    background-size: cover;
+    background-position-y: -50px;
+}
+
+
+
+
+
+
+footer{
+    min-height: 5vh;
+}
+
+

@@ -1,0 +1,340 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
+
+.rojo {
+    background-color: red;
+}
+
+.azul {
+    background-color: rgb(225, 225, 255);
+}
+
+.verde {
+    color: red !important;
+}
+
+.amarillo {
+    background-color: yellow;
+}
+
+.rosa {
+    background-color: pink;
+}
+
+.celeste {
+    background-color: aqua;
+}
+
+.violeta {
+    background-color: blueviolet;
+}
+
+.negro {
+    background-color: #111111 !important;
+}
+
+.gris {
+    background-color: rgb(241, 239, 239);
+}
+
+.sombra{
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px !important;
+}
+
+header {
+    min-height: 7vh;
+}
+
+header img {
+    height: 5vh !important;
+}
+
+#offcanvasButton {
+    background-color: white !important;
+    border: solid 2px red;
+    height: 2.5rem;
+    width: 3rem;
+    font-size: 2rem;
+}
+
+.navButton {
+    border-radius: 360px;
+    border: solid 1px red;
+    font-size: 1.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.navButton:hover,
+#offcanvasButton:hover {
+    background-color: red !important;
+    color: white !important;
+    border: none;
+}
+
+
+main {
+    min-height: 88vh;
+}
+
+.accountCard {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+    border-radius: 10px;
+    width: 20rem;
+    color: black;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    border-radius: 10px;
+    border: solid 1px red;
+    color: red !important;
+    background: none;
+}
+
+button:hover {
+    border: solid 1px red;
+    color: white !important;
+    background-color: red;
+}
+
+.quickAccesLink {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+    background-color: white;
+    border: solid 1px red;
+    border-radius: 10px;
+    height: 9rem;
+    width: 8rem;
+}
+
+.quickAccesLink:hover {
+    transform: scale(1.1);
+}
+
+.extraContent {
+    border-radius: 10px;
+    border: solid 1px black;
+}
+
+.extraContent img {
+    border-radius: 60px;
+}
+
+table {
+    border-radius: 10px;
+}
+
+tbody>tr:hover {
+    background-color: #c4c4c4;
+    transform: scaleX(1.05);
+}
+
+.personalLoanCard {
+    height: 18rem !important;
+    background-image: url(../img/personal_loan.jpeg);
+    background-position-y: 35%;
+    background-size: 100%;
+}
+
+.carLoanCard {
+    height: 18rem !important;
+    background-image: url(../img/car_loan.jpg);
+    background-position-y: center;
+    background-size: 100%;
+}
+
+.mortgageLoanCard {
+    height: 18rem !important;
+    background-image: url(../img/mortage_loan.jpg);
+    background-position-y: 40%;
+    background-size: 100%;
+}
+
+.grayBg {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* -- CREDIT CARD CSS --  */
+
+.creditCard {
+    position: relative;
+    width: 508px;
+    height: 314px;
+    transform-style: preserve-3d;
+    perspective: 500px;
+}
+
+.creditCard .face {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    transform-style: preserve-3d;
+    transition: 1s;
+    backface-visibility: hidden;
+}
+
+.gold {
+    background-image: linear-gradient(135deg, rgb(196, 167, 2), red);
+}
+
+.silver {
+    background-image: linear-gradient(135deg, rgb(71, 71, 71), red);
+}
+
+.titanium {
+    background-image: linear-gradient(135deg, rgb(110, 155, 184), red);
+
+}
+
+.creditCard:hover .face.front {
+    transform: rotateY(180deg);
+}
+
+.creditCard:hover .face.back {
+    transform: rotateY(360deg);
+}
+
+.creditCard .face.back {
+    transform: rotateY(180deg);
+}
+
+.creditCard .face.front .debit {
+    position: absolute;
+    left: 40px;
+    top: 30px;
+    color: #fff;
+    font-weight: 500;
+}
+
+.creditCard .face.front .bank {
+    position: absolute;
+    right: 40px;
+    top: 25px;
+    color: #fff;
+    font-weight: 500;
+    font-style: italic;
+    font-size: 2rem;
+}
+
+.creditCard .face.front .cips {
+    position: absolute;
+    top: 80px;
+    left: 50px;
+    max-width: 64px;
+}
+
+.creditCard .face.front .number {
+    position: absolute;
+    bottom: 130px;
+    left: 40px;
+    color: #fff;
+    font-weight: 500;
+    letter-spacing: 6px;
+    font-size: 18px;
+    text-shadow: 0 2px 1px #0005;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.creditCard .face.front .valid {
+    position: absolute;
+    bottom: 90px;
+    left: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-weight: 300;
+    line-height: 1em;
+    text-align: right;
+}
+
+.creditCard .face.front .valid span:last-child {
+    margin-left: 20px;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 2px;
+
+}
+
+.creditCard .face.front .cardHolder {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    color: #fff;
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: 2px;
+}
+
+.creditCard .face.back .blackbar {
+    position: absolute;
+    top: 40px;
+    width: 100%;
+    height: 60px;
+    background: #000;
+}
+
+.creditCard .face.back .ccvtext {
+    position: absolute;
+    top: 120px;
+    left: 30px;
+}
+
+.creditCard .face.back .ccvtext h5 {
+    color: #fff;
+    font-weight: 400;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.creditCard .face.back .ccvtext .whiteBar {
+    position: relative;
+    width: 400px;
+    height: 40px;
+    background: #fff;
+    margin-top: 5px;
+}
+
+.creditCard .face.back .ccvtext .ccv {
+    position: relative;
+    top: -35px;
+    left: 395px;
+    background: #ccc;
+    color: #111;
+    width: 50px;
+    height: 30px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.creditCard .face.back .text {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    right: 30px;
+    color: #fff;
+    font-size: 12px;
+    line-height: 1.4em;
+    font-weight: 300;
+}
+
+.accordion, .accordion-item{
+    border: none !important;
+}
+
+/* -- FOOTER --  */
+
+footer {
+    min-height: 5vh;
+}
