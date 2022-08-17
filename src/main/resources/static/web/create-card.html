@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Your Cards</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles/style2.css">
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Work+Sans">
+</head>
+
+<body>
+    <div id="app" class="col-12">
+
+        <header class="col-12 d-flex justify-content-center align-items-center">
+
+            <div class="d-flex col">
+                <button class="btn verde ms-1 ms-md-3 d-flex align-items-center justify-content-center" type="button"
+                    data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"
+                    id="offcanvasButton">
+                    <i class="bi bi-list"></i>
+                </button>
+
+                <div class="offcanvas offcanvas-start negro" tabindex="-1" id="offcanvasExample"
+                    aria-labelledby="offcanvasExampleLabel">
+
+                    <div class="offcanvas-header verde">
+                        <h5 class="offcanvas-title" id="offcanvasExampleLabel">RLBP Bank</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+
+                    <div class="offcanvas-body text-white">
+
+                        <div class="list-group">
+                            <h4 class="border-bottom">Account Options</h4>
+                            <a href="./accounts.html" class="list-group-item list-group-item-action negro text-white border-bottom"
+                                aria-current="true">
+                                Accounts
+                            </a>
+                            <a href=""
+                                class="list-group-item list-group-item-action negro text-white border-bottom">Transactions</a>
+                            <a href=""
+                                class="list-group-item list-group-item-action negro text-white border-bottom">Buy & sell
+                                dollars</a>
+                            <a href="#"
+                                class="list-group-item list-group-item-action negro text-white border-bottom">Your cards</a>
+                            <a href="#"
+                                class="list-group-item list-group-item-action negro text-white border-bottom">Loans</a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="d-flex col justify-content-center">
+                <a href="./accounts.html">
+                    <img class="d-none d-md-block" src="./img/logo.png" alt="">
+                    <img class="d-md-none" src="./img/logosmall.png" alt="">
+                </a>
+            </div>
+
+            <div class="d-flex col justify-content-end me-1 me-md-3">
+
+                <button class="navButton bg-white verde d-flex align-items-center me-4 justify-content-center">
+                    <i class="bi bi-bell-fill"></i>
+                </button>
+
+                <a href="#" class="">
+                    <button class="navButton bg-white verde d-flex align-items-center justify-content-center">
+                        <i class="bi bi-person-fill"></i>
+                    </button>
+                </a>
+
+            </div>
+
+        </header>
+
+        <main class="col-12 d-flex justify-content-center gris">
+
+
+            <div class="col-12 col-md-8">
+
+                <div v-show="cards.length > 0" class="mt-5 animate__animated animate__slideInRight">
+                    <h3 class="mt-4">So you want to have a new card...</h3>
+                    <h4>That's great! We will need you to select the type and color so we can make it</h4>
+                </div>
+
+                <form class="d-flex g-3 align-items-center mt-5 flex-wrap justify-content-evenly" @submit.prevent="">
+
+                  
+                    <div class="col-3">
+                      <label class="visually-hidden" for="cardTypeSelector">Preference</label>
+                      <select v-model="newCardType" class="form-select" id="cardTypeSelector">
+                        <option selected disabled hidden>Type...</option>
+                        <option value="DEBIT">Debit</option>
+                        <option value="CREDIT">Credit</option>
+                      </select>
+                    </div>
+
+                    <div class="col-3">
+                        <label class="visually-hidden" for="cardColorSelector">Preference</label>
+                        <select v-model="newCardColor" class="form-select" id="cardColorSelector">
+                          <option selected disabled hidden>Color...</option>
+                          <option value="SILVER">Silver</option>
+                          <option value="GOLD">Gold</option>
+                          <option value="TITANIUM">Titanium</option>
+                        </select>
+                      </div>
+                  
+
+                  
+                    <div class="col-12 d-flex justify-content-center mt-4">
+                        <button @click="createNewCard" style="height: 2.5rem;" class="d-flex justify-content-center align-items-center">Create card</button>
+                    </div>
+                  </form>
+
+                  <h4 class="mt-5">Here you can see some examples of our card designs:</h4>
+
+                  <div class="d-flex justify-content-evenly col-12 align-items-center mt-5 flex-wrap">
+
+
+                  <div  class="creditCard mt-2 mb-2">
+                    <div class="face front silver" >
+                        <img src="./img/logosmall.png" class="ps-5 ms-5" alt="">
+                        <h2 class="bank">RLBP Bank</h2>
+                        <img class="cips" src="./img/creditCardImg/chip.png" alt="">
+                        <h3 class="number">XXXX XXXX XXXX XXXX</h3>
+                        <h5 class="valid"><span>Expires<br>yy/mm</span><span>XX/XX</span></h5>
+                        <div class="col-10 cardHolder d-flex justify-content-between align-items-end">
+                            <h5>Silver Card</h5>
+                            <div class="d-flex flex-column align-items-end">
+                                <img class="" src="./img/creditCardImg/visa.png">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="face back silver">
+                        <div class="blackbar"></div>
+                        <div class="ccvtext">
+                            <h5>Autorize Signature-not valid unless signed</h5>
+                            <div class="whiteBar"></div>
+                            <div class="ccv">***</div>
+                        </div>
+                        <p class="text">
+                            If this card is found, please return it to RLBP Bank S.A., 742 Evergreen Terrace, Springfield, United States of America. Call: (+1 408) 064-7789 or any branch of RLBP Bank S.A.. This card is non-transferable and for the exclusive use of the Card Holder whose signature appears above. Valid before the indicated date. The holder must use this Card in accordance with the terms and conditions that govern its use.</p>
+                        </div>
+                    </div>
+
+                    <div  class="creditCard mt-2 mb-2">
+                        <div class="face front gold" >
+                            <img src="./img/logosmall.png" class="ps-5 ms-5" alt="">
+                            <h2 class="bank">RLBP Bank</h2>
+                            <img class="cips" src="./img/creditCardImg/chip.png" alt="">
+                            <h3 class="number">XXXX XXXX XXXX XXXX</h3>
+                            <h5 class="valid"><span>Expires<br>yy/mm</span><span>XX/XX</span></h5>
+                            <div class="col-10 cardHolder d-flex justify-content-between align-items-end">
+                                <h5>Golden Card</h5>
+                                <div class="d-flex flex-column align-items-end">
+                                    <img class="" src="./img/creditCardImg/visa.png">
+                                    <h6>DEBIT</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="face back gold">
+                            <div class="blackbar"></div>
+                            <div class="ccvtext">
+                                <h5>Autorize Signature-not valid unless signed</h5>
+                                <div class="whiteBar"></div>
+                                <div class="ccv">***</div>
+                            </div>
+                            <p class="text">
+                                If this card is found, please return it to RLBP Bank S.A., 742 Evergreen Terrace, Springfield, United States of America. Call: (+1 408) 064-7789 or any branch of RLBP Bank S.A.. This card is non-transferable and for the exclusive use of the Card Holder whose signature appears above. Valid before the indicated date. The holder must use this Card in accordance with the terms and conditions that govern its use.</p>
+                            </div>
+                        </div>
+
+                        <div  class="creditCard mt-2 mb-2">
+                            <div class="face front titanium" >
+                                <img src="./img/logosmall.png" class="ps-5 ms-5" alt="">
+                                <h2 class="bank">RLBP Bank</h2>
+                                <img class="cips" src="./img/creditCardImg/chip.png" alt="">
+                                <h3 class="number">XXXX XXXX XXXX XXXX</h3>
+                                <h5 class="valid"><span>Expires<br>yy/mm</span><span>XX/XX</span></h5>
+                                <div class="col-10 cardHolder d-flex justify-content-between align-items-end">
+                                    <h5>Titanium Card</h5>
+                                    <div class="d-flex flex-column align-items-end">
+                                        <img class="" src="./img/creditCardImg/visa.png">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="face back titanium">
+                                <div class="blackbar"></div>
+                                <div class="ccvtext">
+                                    <h5>Autorize Signature-not valid unless signed</h5>
+                                    <div class="whiteBar"></div>
+                                    <div class="ccv">***</div>
+                                </div>
+                                <p class="text">
+                                    If this card is found, please return it to RLBP Bank S.A., 742 Evergreen Terrace, Springfield, United States of America. Call: (+1 408) 064-7789 or any branch of RLBP Bank S.A.. This card is non-transferable and for the exclusive use of the Card Holder whose signature appears above. Valid before the indicated date. The holder must use this Card in accordance with the terms and conditions that govern its use.</p>
+                                </div>
+                            </div>
+                    
+                    
+                </div>
+
+                <div class="col-12  d-flex flex-wrap justify-content-evenly mt-5">
+
+
+
+
+                </div>
+
+
+                <!-- -- EXTRA CONTEN --  -->
+
+                <div class="carousel-item active card mt-5 mb-4 sombra">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="./img/recomendation.png" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title fs-1 fw-bold mt-5 mb-4" style="color: red;">A word from our
+                                    clients:</h5>
+                                <p class="fs-3 mt-5">Still unsure about opening an account in RLBP Bank? One of our
+                                    clients have something to say...</p>
+                                <p class="fs-3"><span style="font-style: italic;">"I've spent so much time looking for a
+                                        bank that I could trust, that I could feel that they'd guard my saving safely,
+                                        and so far I couldn't find better than RLBP, no other bank have that many
+                                        guarantees nor a better webpage".</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </main>
+
+        <footer class="d-flex col-12 negro justify-content-end align-items-center">
+        </footer>
+
+    </div>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="js/accounts.js"></script>
+</body>
+
+</html>
