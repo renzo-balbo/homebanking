@@ -7,7 +7,8 @@ createApp({
         params: "",
         id:"",
         account:{},
-        transactions:[]
+        transactions:[],
+        client:{}
     }
   },
 
@@ -30,13 +31,24 @@ createApp({
             this.account = response.data
             this.transactions = this.account.transactions.sort((a,b) => b.id - a.id)
             this.normalizeDate(this.transactions)
+            this.loadClientData()
         })
+    },
+
+    loadClientData(){
+      axios.get("/api/clients/current")
+      .then(response => this.client=response.data)
     },
 
     normalizeDate(transactionsArray){
       transactionsArray.forEach(transaction => {
         transaction.date = transaction.date.slice(0, 10) 
       });
+    },
+
+    logout() {
+      axios.post('/api/logout')
+        .then(response => window.location.href = "./index.html")
     },
 
   },

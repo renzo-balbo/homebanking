@@ -36,6 +36,13 @@ public class Account {
         this.balance = balance;
     }
 
+    public Account(String number, LocalDateTime creationDate, double balance, Client client) {
+        this.number = number;
+        this.creationDate = creationDate;
+        this.balance = balance;
+        this.client = client;
+    }
+
     public String getNumber(){return number;}
     public void setNumber(String number){this.number = number;}
 

@@ -15,7 +15,7 @@
 <body>
     <div id="app" class="col-12">
 
-        <header class="col-12 d-flex justify-content-center align-items-center">
+        <header class="col-12 d-flex justify-content-center align-items-center border-bottom">
 
             <div class="d-flex col">
                 <button class="btn verde ms-1 ms-md-3 d-flex align-items-center justify-content-center" type="button"
@@ -40,15 +40,41 @@
                                 aria-current="true">
                                 Accounts
                             </a>
-                            <a href=""
-                                class="list-group-item list-group-item-action negro text-white border-bottom">Transactions</a>
-                            <a href=""
+
+                            <div class="accordion" id="accordionExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingOne">
+                                        <button
+                                            class="accordion-button list-group-item list-group-item-action negro border-bottom text-white"
+                                            type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                                            aria-expanded="true" aria-controls="collapseOne">
+                                            Transactions
+                                        </button>
+                                    </h2>
+                                    <div id="collapseOne"
+                                        class="accordion-collapse collapse list-group-item list-group-item-action negro text-white border-bottom"
+                                        aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body d-flex flex-column">
+                                            <a v-for="account in client.accounts" style="color: red;"
+                                                :href="'account.html?id='+account.id"
+                                                class="border-bottom">{{account.number}}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <a href="./account.html"
                                 class="list-group-item list-group-item-action negro text-white border-bottom">Buy & sell
                                 dollars</a>
                             <a href="#"
-                                class="list-group-item list-group-item-action negro text-white border-bottom">Your cards</a>
+                                class="list-group-item list-group-item-action negro text-white border-bottom">Your
+                                cards</a>
+                                <a href="./create-card.html"
+                                class="list-group-item list-group-item-action negro text-white border-bottom">Create new card</a>
                             <a href="#"
                                 class="list-group-item list-group-item-action negro text-white border-bottom">Loans</a>
+
+
                         </div>
 
                     </div>
@@ -70,11 +96,11 @@
                     <i class="bi bi-bell-fill"></i>
                 </button>
 
-                <a href="#" class="">
-                    <button class="navButton bg-white verde d-flex align-items-center justify-content-center">
-                        <i class="bi bi-person-fill"></i>
-                    </button>
-                </a>
+                <button @click="logout"
+                    class="navButton bg-white verde d-flex align-items-center justify-content-center">
+                    <i class="bi bi-power"></i>
+                </button>
+
 
             </div>
 
@@ -85,8 +111,12 @@
 
             <div class="col-12 col-md-8">
 
-                <div v-show="cards.length > 0" class="mt-5 animate__animated animate__slideInRight">
+                <div v-show="cards.length > 0" class="mt-5 animate__animated animate__slideInRight d-flex justify-content-between align-items-center">
                     <h3 class="mt-4">Here you can see your cards:</h3>
+                    <a href="./create-card.html">
+                        <button style="height: 2.5rem;" v-if='cards.length<6' class="d-flex justify-content-center align-items-center">Create a new card</button>
+                    </a>
+
                 </div>
 
                 <div class="col-12  d-flex flex-wrap justify-content-evenly mt-5">
