@@ -86,6 +86,9 @@ main{
     height: 588px;
 }
 
+.carousel-caption{
+    background-color: rgba(128, 128, 128, 0.651) !important;
+}
 
 
 
@@ -100,17 +103,7 @@ a{
     text-decoration: none;
 }
 
-/* button{
-    border-radius: 10px;
-    border: solid 1px black;
-    background: none;
-}
 
-button:hover{
-    border: solid 1px black;
-    color: white !important;
-    background-color: red;
-} */
 
 .quickAccesLink{
     background-color: white;
@@ -162,6 +155,22 @@ tbody>tr:hover{
     background-image: url(../img/starbucs.jpg);
     background-size: cover;
     background-position-y: -50px;
+}
+
+#promo1{
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbvNNKD1MJhZb9rwDxaUyDC6cgj99wWnZvfg&usqp=CAU);
+    background-size: contain;
+    border: solid 1px black !important;
+    border-radius: 5px;
+    height: 48%;
+}
+
+#promo2{
+    background-image: url(https://www.ubagroup.com/57-marina/wp-content/uploads/sites/4/2021/11/Vacation-tips.jpg);
+    background-size: 100%;
+    border: solid 1px black !important;
+    border-radius: 5px;
+    height: 48%;
 }
 
 

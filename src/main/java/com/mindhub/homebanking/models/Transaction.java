@@ -18,6 +18,8 @@ public class Transaction {
     private double amount;
     private String description;
     private LocalDateTime date;
+    private double oldBalance;
+    private double postTransaction;
 
     @ManyToOne (fetch = FetchType.EAGER)
     @JoinColumn(name = "account_id")
@@ -30,6 +32,8 @@ public class Transaction {
         this.amount = amount;
         this.description = description;
         this.date = date;
+        this.oldBalance = account.getBalance();
+        this.postTransaction = account.getBalance()+amount;
         this.account = account;
     }
 
@@ -69,6 +73,12 @@ public class Transaction {
     public void setDate(LocalDateTime date) {
         this.date = date;
     }
+
+    public double getOldBalance() {return oldBalance;}
+    public void setOldBalance(double oldBalance) {this.oldBalance = oldBalance;}
+
+    public double getPostTransaction() {return postTransaction;}
+    public void setPostTransaction(double postTransaction) {this.postTransaction = postTransaction;}
 
     public Account getAccount() {
         return account;

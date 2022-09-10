@@ -36,7 +36,7 @@
     background-color: rgb(241, 239, 239);
 }
 
-.sombra{
+.sombra {
     box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px !important;
 }
 
@@ -152,6 +152,21 @@ tbody>tr:hover {
     background-size: 100%;
 }
 
+.loanCard{
+    min-height: 25rem;
+    border-radius: 5px;
+    border: 1px solid red;
+}
+.loanPayments{
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+    background-color: white;
+    border: solid 1px red;
+    border-radius: 10px;
+    height: 5rem;
+    width: 4rem;
+}
+
+
 .grayBg {
     background-color: rgba(0, 0, 0, 0.5);
 }
@@ -164,6 +179,7 @@ tbody>tr:hover {
     height: 314px;
     transform-style: preserve-3d;
     perspective: 500px;
+
 }
 
 .creditCard .face {
@@ -181,16 +197,21 @@ tbody>tr:hover {
 }
 
 .gold {
-    background-image: linear-gradient(135deg, rgb(196, 167, 2), red);
+    background-image: url(../img/creditCardImg/goldCard.png);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .silver {
-    background-image: linear-gradient(135deg, rgb(71, 71, 71), red);
+    background-image: url(../img/creditCardImg/silverCard.png);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .titanium {
-    background-image: linear-gradient(135deg, rgb(110, 155, 184), red);
-
+    background-image: url(../img/creditCardImg/titaniumCard.png);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .creditCard:hover .face.front {
@@ -329,9 +350,34 @@ tbody>tr:hover {
     font-weight: 300;
 }
 
-.accordion, .accordion-item{
+.accordion,
+.accordion-item {
     border: none !important;
 }
+
+/* #transactionForm {} */
+
+textarea {
+    resize: none;
+    width: 100%;
+    min-height: 10rem !important;
+}
+
+.bordeRojo{
+    border-color: rgb(255, 0, 0) !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+
 
 /* -- FOOTER --  */
 

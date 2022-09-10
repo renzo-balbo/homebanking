@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Account</title>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -37,7 +38,8 @@
 
                         <div class="list-group">
                             <h4 class="border-bottom">Account Options</h4>
-                            <a href="./accounts.html" class="list-group-item list-group-item-action negro text-white border-bottom"
+                            <a href="./accounts.html"
+                                class="list-group-item list-group-item-action negro text-white border-bottom"
                                 aria-current="true">
                                 Accounts
                             </a>
@@ -64,15 +66,19 @@
                                 </div>
                             </div>
 
-                            <a href="./account.html"
+                            <a href="./transfers.html"
+                                class="list-group-item list-group-item-action negro text-white border-bottom">Transfer</a>
+
+                            <a href="#"
                                 class="list-group-item list-group-item-action negro text-white border-bottom">Buy & sell
                                 dollars</a>
                             <a href="./cards.html"
                                 class="list-group-item list-group-item-action negro text-white border-bottom">Your
                                 cards</a>
-                                <a href="./create-card.html"
-                                class="list-group-item list-group-item-action negro text-white border-bottom">Create new card</a>
-                            <a href="#"
+                            <a href="./create-card.html"
+                                class="list-group-item list-group-item-action negro text-white border-bottom">Create new
+                                card</a>
+                            <a href="./loan-application.html"
                                 class="list-group-item list-group-item-action negro text-white border-bottom">Loans</a>
 
 
@@ -84,6 +90,17 @@
 
             </div>
 
+            <div class="col d-xl-flex d-none justify-content-evenly">
+                <a href="./accounts.html">
+                    <button style="min-height: 2.5rem;"
+                        class="d-flex justify-content-center align-items-center">Accounts</button>
+                </a>
+                <a href="./transfers.html">
+                    <button style="min-height: 2.5rem;"
+                        class="d-flex justify-content-center align-items-center">Transfer</button>
+                </a>
+            </div>
+
             <div class="d-flex col justify-content-center">
                 <a href="./accounts.html">
                     <img class="d-none d-md-block" src="./img/logo.png" alt="">
@@ -91,16 +108,33 @@
                 </a>
             </div>
 
+            <div class="col d-xl-flex d-none justify-content-evenly">
+                <a href="./cards.html">
+                    <button style="min-height: 2.5rem;" class="d-flex justify-content-center align-items-center">Your
+                        cards</button>
+                </a>
+                <a href="./loan-application.html">
+                    <button style="min-height: 2.5rem;"
+                        class="d-flex justify-content-center align-items-center">Loans</button>
+                </a>
+            </div>
+
             <div class="d-flex col justify-content-end me-1 me-md-3">
 
+                <div class="d-flex verde">
+                    <p class="mt-2 me-2 d-none d-lg-flex">Notifications</p>
+                </div>
                 <button class="navButton bg-white verde d-flex align-items-center me-4 justify-content-center">
                     <i class="bi bi-bell-fill"></i>
                 </button>
 
-                <button @click="logout"
-                    class="navButton bg-white verde d-flex align-items-center justify-content-center">
-                    <i class="bi bi-power"></i>
-                </button>
+                <div class="d-flex verde">
+                    <p class="me-2 mt-2 d-none d-lg-flex">Log out</p>
+                    <button @click="logout"
+                        class="navButton bg-white verde d-flex align-items-center justify-content-center">
+                        <i class="bi bi-power"></i>
+                    </button>
+                </div>
 
 
             </div>
@@ -111,29 +145,64 @@
 
 
             <div class="col-12 col-md-8">
-                <div class="mt-5 bg-white extraContent animate__animated animate__slideInRight">
+                <div class="mt-5 bg-white extraContent">
 
                     <div class="col-12 d-flex justify-content-around p-4 border-bottom">
                         <h2 class="verde">Account <span style="font-weight: 700;"
                                 class="text-black">{{account.number}}</span></h2>
 
-                        <button class="dropdown">
-                            <a class="dropdown-toggle text-black" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                <i class="bi bi-arrow-left-right ms-2 me-2"></i>
-                                Operations
-                            </a>
+                                <div class="d-flex flex-wrap gap-2">
 
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Buy & sell dollars</a></li>
-                                <li><a class="dropdown-item" href="#">Transfer</a></li>
-                            </ul>
-                        </button>
+                                
+                        <a  href="./transfers.html"><button style="height: 2.5rem;"
+                                class="d-flex justify-content-center align-items-center" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">Transfer</button></a>
+
+                        <button style="height: 2.5rem; width:10rem;" class="d-flex justify-content-center align-items-center"
+                            data-bs-toggle="modal" data-bs-target="#exampleModal">Generate PDF</button>
+                        <!-- MODAL  -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Select a date range to filter
+                                            transactions:</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="d-flex gap-2">
+                                            <label for="">From date:</label>
+                                            <input type="date" name="fromDate" id="fromDate" v-model="fromDate">
+                                            <label for="">To date:</label>
+                                            <input type="date" name="toDate" id="toDate" v-model="toDate">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="" @click="generateTransactionPdf">Confirm</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
 
-                    <h3 class="mt-4 verde text-center p-4">Balance: <span style="font-weight: 700;"
-                            class="text-black">${{account.balance}}</span></h3>
+                    </div>
+
+                    <div class="d-flex justify-content-center col-12">
+                        <h3 class="mt-4 verde text-center p-4">Type:
+                            <span style="font-weight: 700;" class="text-black"
+                                v-if="account.accountType=='SAVINGS_ACCOUNT'">Savings Account</span>
+                            <span style="font-weight: 700;" class="text-black"
+                                v-if="account.accountType=='USD_SAVINGS_ACCOUNT'">U$D Savings Account</span>
+                            <span style="font-weight: 700;" class="text-black"
+                                v-if="account.accountType=='CURRENT_ACCOUNT'">Current Account</span>
+                        </h3>
+                        <h3 class="mt-4 verde text-center p-4">Balance: <span style="font-weight: 700;"
+                                class="text-black">{{account.balance}}</span></h3>
+                    </div>
                 </div>
 
 
@@ -142,21 +211,27 @@
 
                 <table class="table bg-white mt-5 text-center animate__animated animate__slideInLeft">
                     <thead>
-                        <legend class="text-center mt-4 mb-1 fw-bolder animate__animated animate__slideInLeft">Transactions</legend>
+                        <legend class="text-center mt-4 mb-1 fw-bolder animate__animated animate__slideInLeft">
+                            Transactions</legend>
                         <tr class="text-black">
                             <th scope="col">Amount</th>
                             <th scope="col">Type</th>
+                            <th scope="col">Previous balance</th>
+                            <th scope="col">Post-Transaction balance</th>
                             <th scope="col">Description</th>
                             <th scope="col">Date</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr v-for="transaction in transactions">
-                            <td v-if="transaction.amount > 0" style="color: green;" scope="row">${{transaction.amount}}
+                            <td v-if="transaction.type == 'CREDIT'" style="color: green;" scope="row">
+                                {{transaction.amount}}
                             </td>
-                            <td v-else style="color: red;">${{transaction.amount}}</td>
+                            <td v-else style="color: red;">{{transaction.amount}}</td>
                             <td v-if="transaction.type== 'DEBIT'" style="color: red;">{{transaction.type}}</td>
                             <td v-else style="color: green;">{{transaction.type}}</td>
+                            <td class="text-black">{{transaction.oldBalance}}</td>
+                            <td class="text-black">{{transaction.postTransaction}}</td>
                             <td class="text-black">{{transaction.description}}</td>
                             <td class="text-black">{{transaction.date}}</td>
                         </tr>
@@ -172,28 +247,35 @@
 
                 <!-- -- EXTRA CONTENT --  -->
 
-                <div class="card animate__animated animate__slideInRight mb-3">
-                    <div class="row g-0">
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 class="card-title fs-1 fw-bold mt-5 mb-4" style="color: red;"><span style="font-style:italic">"How can I apply for a loan?"</span></h5>
-                          <p class="fs-3 mt-5">Applying for a personal loan is similar to applying for a credit card. You'll need to enter your personal information, your financial information and the details about your desired loan. Before approving you, the lender will run a hard credit check, which may temporarily lower your credit score. If your financial picture and credit score are sufficient for the lender — often, you need a credit score in the mid-600s — the lender will set your interest rate, loan amount and terms</p>
+
+                <div class="card mt-5 mb-4 sombra animate__animated animate__slideInRight mb-3">
+                    <div class="d-flex flex-column flex-lg-row g-0 flex-wrap">
+                        <div class="col-12 col-xxl-8">
+                            <div class="card-body">
+                                <h5 class="card-title fs-1 fw-bold mt-5 mb-4" style="color: red;">How can I apply for a
+                                    loan?</h5>
+                                <p class="fs-3"><span style="font-style: italic;">Applying for a personal loan is
+                                        similar to applying for a credit card. You'll need to enter your personal
+                                        information, your financial information and the details about your desired loan.
+                                        Before approving you, the lender will run a hard credit check, which may
+                                        temporarily lower your credit score. If your financial picture and credit score
+                                        are sufficient for the lender — often, you need a credit score in the mid-600s —
+                                        the lender will set your interest rate, loan amount and terms</span></p>
+                            </div>
                         </div>
-                      </div>
-        
-                      <div class="col-md-4 d-flex justify-content-end">
-                      <img src="./img/thinking.png" class="img-fluid rounded-end" alt="...">
-                      </div>
-                      
-        
+                        <div class="col-12 d-md-none d-xxl-flex col-xxl-4">
+                            <img src="./img/thinking.png" class="img-fluid rounded-start rounded-end"
+                                alt="A man pointing to the RLBP Bank logo">
+                        </div>
                     </div>
-                  </div>
+                </div>
 
 
             </div>
         </main>
 
-        <footer class="d-flex col-12 negro justify-content-end align-items-center">
+        <footer class="bg-dark col-12 d-flex align-items-center justify-content-center">
+            <h6 class="verde me-4">Developed by &copy;RLBP</h6>
         </footer>
 
     </div>

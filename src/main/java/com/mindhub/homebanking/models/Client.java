@@ -27,14 +27,17 @@ public class Client {
 
     private String password;
 
+    private boolean verified;
+
     public Client(){}
 
-    public Client(String first, String last, String mail, Account account, String password){
+    public Client(String first, String last, String mail, Account account, String password, boolean verified){
         this.firstName = first;
         this.lastName = last;
         this.email = mail;
         this.password = password;
         this.addAccount(account);
+        this.verified = verified;
     }
 
     public Client (String first, String last, String mail, String password){
@@ -42,6 +45,14 @@ public class Client {
         this.lastName = last;
         this.email = mail;
         this.password = password;
+        this.verified = false;
+    }
+    public Client (String first, String last, String mail, String password, boolean verified){
+        this.firstName = first;
+        this.lastName = last;
+        this.email = mail;
+        this.password = password;
+        this.verified = verified;
     }
 
     public Client(String firstName, String lastName, String email, Set<Account> accounts, Set<ClientLoan> clientLoans, String password) {
@@ -102,5 +113,13 @@ public class Client {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isVerified() {
+        return verified;
+    }
+
+    public void setVerified(boolean verified) {
+        this.verified = verified;
     }
 }

@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title> Your Accounts</title>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -65,15 +66,19 @@
                                 </div>
                             </div>
 
-                            <a href="./account.html"
+                            <a href="./transfers.html"
+                                class="list-group-item list-group-item-action negro text-white border-bottom">Transfer</a>
+
+                            <a href="#"
                                 class="list-group-item list-group-item-action negro text-white border-bottom">Buy & sell
                                 dollars</a>
                             <a href="./cards.html"
                                 class="list-group-item list-group-item-action negro text-white border-bottom">Your
                                 cards</a>
-                                <a href="./create-card.html"
-                                class="list-group-item list-group-item-action negro text-white border-bottom">Create new card</a>
-                            <a href="#"
+                            <a href="./create-card.html"
+                                class="list-group-item list-group-item-action negro text-white border-bottom">Create new
+                                card</a>
+                            <a href="./loan-application.html"
                                 class="list-group-item list-group-item-action negro text-white border-bottom">Loans</a>
 
 
@@ -85,23 +90,51 @@
 
             </div>
 
+            <div class="col d-xl-flex d-none justify-content-evenly">
+                <a href="#">
+                    <button style="min-height: 2.5rem; background-color: red;"
+                        class="d-flex justify-content-center text-white align-items-center">Accounts</button>
+                </a>
+                <a href="./transfers.html">
+                    <button style="min-height: 2.5rem;"
+                        class="d-flex justify-content-center align-items-center">Transfer</button>
+                </a>
+            </div>
+
             <div class="d-flex col justify-content-center">
-                <a href="./accounts.html">
+                <a href="#">
                     <img class="d-none d-md-block" src="./img/logo.png" alt="">
                     <img class="d-md-none" src="./img/logosmall.png" alt="">
                 </a>
             </div>
 
+            <div class="col d-xl-flex d-none justify-content-evenly">
+                <a href="./cards.html">
+                    <button style="min-height: 2.5rem;" class="d-flex justify-content-center align-items-center">Your
+                        cards</button>
+                </a>
+                <a href="./loan-application.html">
+                    <button style="min-height: 2.5rem;"
+                        class="d-flex justify-content-center align-items-center">Loans</button>
+                </a>
+            </div>
+
             <div class="d-flex col justify-content-end me-1 me-md-3">
 
+                <div class="d-flex verde">
+                    <p class="mt-2 me-2 d-none d-lg-flex">Notifications</p>
+                </div>
                 <button class="navButton bg-white verde d-flex align-items-center me-4 justify-content-center">
                     <i class="bi bi-bell-fill"></i>
                 </button>
 
-                <button @click="logout"
-                    class="navButton bg-white verde d-flex align-items-center justify-content-center">
-                    <i class="bi bi-power"></i>
-                </button>
+                <div class="d-flex verde">
+                    <p class="me-2 mt-2 d-none d-lg-flex">Log out</p>
+                    <button @click="logout"
+                        class="navButton bg-white verde d-flex align-items-center justify-content-center">
+                        <i class="bi bi-power"></i>
+                    </button>
+                </div>
 
 
             </div>
@@ -113,12 +146,87 @@
 
             <div class="col-12 col-md-8">
 
-                <div class="mt-5 animate__animated animate__slideInRight">
+                <div class="mt-5 ">
                     <h2>Hello, <span style="font-weight: 700;">{{client.firstName}} {{client.lastName}}</span></h2>
                     <div class="col-12 d-flex justify-content-between align-items-center">
                         <h3 class="mt-4">Here's the state of your accounts</h3>
-                        <button @click="createNewAccount" style="min-height: 2.5rem;" v-if='accounts.length<3'
-                            class="d-flex justify-content-center align-items-center">Create a new account</button>
+                        <div class="d-flex gap-2">
+
+                            <!-- MODAL ELIMINAR ACCOUNT  -->
+                            <button style="min-height: 2.5rem;" v-if='accounts.length>1'
+                                class="d-flex justify-content-center align-items-center" data-bs-toggle="modal"
+                                data-bs-target="#deleteAccountModal">Disable an account</button>
+
+                            <div class="modal fade" id="deleteAccountModal" tabindex="-1"
+                                aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="deleteAccountModalLabel">Select an account to disable:</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="d-flex col-12 justify-content-evenly flex-wrap">
+                                                <div v-for="account in accounts" class="">
+                                                    <input type="radio" name="accountToDisable" :id="account.number" class="me-2" :value="account.number" v-model="accountToDisable">
+                                                    <label :for="account.number">Number: {{account.number}}</label>
+                                                        <span v-if="account.accountType=='CURRENT_ACCOUNT'" class="ms-2">Current account</span>
+                                                        <span v-if="account.accountType=='SAVINGS_ACCOUNT'" class="ms-2">Savings account</span>
+                                                        <span v-if="account.accountType=='USD_SAVINGS_ACCOUNT'" class="ms-2">U$D Savings account</span>
+                                                        <p>Balance: {{account.balance}}</p>
+                                                </div>
+                                                <h6 class="mt-3">*We cannot disable an account that currently has founds.</h6>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="" @click="confirmationToDisableAnAccount">Confirm</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- TERMINA MODAL ELIMINAR ACCOUNT  -->
+
+
+                            <!-- MODAL CREACION DE ACCOUNT  -->
+                            <button style="min-height: 2.5rem;" v-if='accounts.length<3'
+                                class="d-flex justify-content-center align-items-center" data-bs-toggle="modal"
+                                data-bs-target="#newAccountModal">Create a new
+                                account</button>
+
+                            <div class="modal fade" id="newAccountModal" tabindex="-1"
+                                aria-labelledby="newAccountModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="newAccountModalLabel">Select the type of account
+                                                that you want:</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="d-flex col-12 justify-content-evenly align-items-center">
+                                                <select name="newAccountTypeSelector" v-model="newAccountType" id="">
+                                                    <option value="CURRENT_ACCOUNT">Current Account</option>
+                                                    <option value="SAVINGS_ACCOUNT">Savings Account</option>
+                                                    <option value="USD_SAVINGS_ACCOUNT">U$D Savings Account</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="" @click="createNewAccount">Confirm</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- TERMINA MODAL CREACION DE ACCOUNT  -->
+
+
+                        </div>
                     </div>
                 </div>
 
@@ -131,18 +239,22 @@
                             <h5 class="d-flex align-items-center verde">Account number:</h5>
                             <h4>{{account.number}}</h4>
                         </div>
+                        <div class="col-12 ms-2 mt-1">
+                            <h6 class="d-flex align-items-center verde">Account type:</h6>
+                            <h5 v-if="account.accountType=='SAVINGS_ACCOUNT'">Savings Account</h5>
+                            <h5 v-if="account.accountType=='USD_SAVINGS_ACCOUNT'">U$D Savings Account</h5>
+                            <h5 v-if="account.accountType=='CURRENT_ACCOUNT'">Current Account</h5>
+                        </div>
                         <div class="ms-2 d-flex flex-column">
                             <p class="verde">Balance:</p>
-                            <h4>${{account.balance}}</h4>
+                            <h4>{{account.balance}}</h4>
                         </div>
-                        <div class="d-flex col-12 justify-content-evenly mt-1 mb-1" style="height: 1.7rem;">
-                            <a :href="'./account.html?id='+account.id" class="col d-flex justify-content-center">
-                                <button class="col-9 d-flex justify-content-evenly"><i
+                        <div class="d-flex col-12 justify-content-evenly mt-1 mb-1 align-items-center"
+                            style="min-height: 1.7rem;">
+                            <a :href="'./account.html?id='+account.id"
+                                class="col d-flex justify-content-center align-items-center">
+                                <button class="col-9 d-flex justify-content-evenly p-1" style="height: 2rem;"><i
                                         class="bi bi-arrow-down-up"></i>Transactions</button>
-                            </a>
-                            <a href="" class="col d-flex justify-content-center">
-                                <button class="col-9 d-flex justify-content-evenly"><i
-                                        class="bi bi-arrow-up"></i>Transfer</button>
                             </a>
                         </div>
                     </div>
@@ -155,12 +267,12 @@
 
                     <h3>Quick Access Links</h3>
 
-                    <div class="col-12 d-flex justify-content-evenly">
+                    <div class="col-12 d-flex justify-content-evenly flex-wrap">
 
                         <div class="quickAccesLink d-flex align-items-center m-3 justify-content-center">
-                            <a href="" class="d-flex justify-content-center flex-wrap m-2 verde">
-                                <i class="bi bi-currency-dollar col-12 text-center mt-2 fs-1"></i>
-                                <p class="mt-2 text-center">Buy & sell dollars</p>
+                            <a href="./transfers.html" class="d-flex justify-content-center flex-wrap m-2 verde">
+                                <i class="bi bi-box-arrow-up col-12 text-center mt-2 fs-1"></i>
+                                <p class="mt-2 text-center">Transfer</p>
                             </a>
                         </div>
 
@@ -180,7 +292,7 @@
                         </div>
 
                         <div class="quickAccesLink d-flex align-items-center m-3 justify-content-center">
-                            <a href="" class="d-flex justify-content-center flex-wrap m-2 verde">
+                            <a href="./loan-application.html" class="d-flex justify-content-center flex-wrap m-2 verde">
                                 <i class="bi bi-bank col-12 text-center mt-2 fs-1"></i>
                                 <p class="mt-2">Loans</p>
                             </a>
@@ -192,20 +304,21 @@
                 </section>
 
                 <!-- -- LOANS --  -->
-                <section v-if="loans.length>0" class="col-12 mt-4 mb-5">
+                <section v-if="clientLoans.length>0" class="col-12 mt-4 mb-5">
                     <h3>Your Pending Loans</h3>
 
                     <div class="col-12 d-flex justify-content-center flex-wrap gap-4">
 
 
-                        <div v-for="loan in loans"
+                        <div v-for="loan in clientLoans"
                             :class="loan.name == 'Personal Loan' ? 'personalLoanCard' : loan.name == 'Mortgage Loan'? 'mortgageLoanCard' : 'carLoanCard'"
-                            class="card text-bg-dark d-flex col-10 sombra">
+                            class="card text-bg-dark d-flex col-12 col-lg-10 sombra">
                             <div class="card-img-overlay justify-content-center grayBg text-center pt-5">
                                 <h2 class="card-title fw-bolder  text-center fs-1" style="color: red;">{{loan.name}}
                                 </h2>
-                                <p class="card-text fs-5">You've asked for a {{loan.name}} with us and you received
-                                    ${{loan.amount}}</p>
+                                <p class="card-text fs-5">You've asked for a {{loan.name}} with us and you'll have to
+                                    pay
+                                    {{moneyFormatter(loan.amount)}}</p>
                                 <p class="card-text fs-5">You have {{loan.payments}} payments to cover that debt</p>
                             </div>
                         </div>
@@ -216,27 +329,26 @@
                 <section v-else class="col-12 mt-4 mb-5">
                     <h3>Did you know that you can apply for a loan?</h3>
 
-                    <div class="card animate__animated animate__slideInRight mb-3">
-                        <div class="row g-0">
-                            <div class="col-md-8">
+                    <div class="card mt-5 mb-4 sombra animate__animated animate__slideInRight mb-3">
+                        <div class="d-flex flex-column flex-lg-row g-0 flex-wrap">
+                            <div class="col-12 col-xxl-8">
                                 <div class="card-body">
-                                    <h5 class="card-title fs-1 fw-bold mt-5 mb-4" style="color: red;"><span
-                                            style="font-style:italic">"How can I apply for a loan?"</span></h5>
-                                    <p class="fs-3 mt-5">Applying for a personal loan is similar to applying for a
-                                        credit card. You'll need to enter your personal information, your financial
-                                        information and the details about your desired loan. Before approving you, the
-                                        lender will run a hard credit check, which may temporarily lower your credit
-                                        score. If your financial picture and credit score are sufficient for the lender
-                                        — often, you need a credit score in the mid-600s — the lender will set your
-                                        interest rate, loan amount and terms</p>
+                                    <h5 class="card-title fs-1 fw-bold mt-5 mb-4" style="color: red;">How can I apply
+                                        for a loan?</h5>
+                                    <p class="fs-3"><span style="font-style: italic;">Applying for a personal loan is
+                                            similar to applying for a credit card. You'll need to enter your personal
+                                            information, your financial information and the details about your desired
+                                            loan. Before approving you, the lender will run a hard credit check, which
+                                            may temporarily lower your credit score. If your financial picture and
+                                            credit score are sufficient for the lender — often, you need a credit score
+                                            in the mid-600s — the lender will set your interest rate, loan amount and
+                                            terms</span></p>
                                 </div>
                             </div>
-
-                            <div class="col-md-4 d-flex justify-content-end">
-                                <img src="./img/thinking.png" class="img-fluid rounded-end" alt="...">
+                            <div class="col-12 d-md-none d-xxl-flex col-xxl-4">
+                                <img src="./img/thinking.png" class="img-fluid rounded-start rounded-end"
+                                    alt="A man pointing to the RLBP Bank logo">
                             </div>
-
-
                         </div>
                     </div>
                 </section>
@@ -245,12 +357,13 @@
 
                 <!-- -- EXTRA CONTENT --  -->
 
-                <div class="carousel-item active card mt-5 mb-4 sombra">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="./img/recomendation.png" class="img-fluid rounded-start" alt="...">
+                <div class="card mt-5 mb-4 sombra">
+                    <div class="d-flex flex-column flex-lg-row g-0 flex-wrap">
+                        <div class="col-12 d-md-none d-xxl-flex col-xxl-4">
+                            <img src="./img/recomendation.png" class="img-fluid rounded-start rounded-end"
+                                alt="A man pointing to the RLBP Bank logo">
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-12 col-xxl-8">
                             <div class="card-body">
                                 <h5 class="card-title fs-1 fw-bold mt-5 mb-4" style="color: red;">A word from our
                                     clients:</h5>
@@ -269,8 +382,8 @@
             </div>
         </main>
 
-        <footer class="negro col-12 d-flex align-items-center justify-content-end">
-            <h6 class="text-white me-4">Developed by &&copy;RLBP</h6>
+        <footer class="bg-dark col-12 d-flex align-items-center justify-content-center">
+            <h6 class="verde me-4">Developed by &copy;RLBP</h6>
         </footer>
 
     </div>

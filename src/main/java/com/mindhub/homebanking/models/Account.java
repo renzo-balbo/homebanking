@@ -20,6 +20,8 @@ public class Account {
     private String number;
     private LocalDateTime creationDate;
     private double balance;
+    private boolean active;
+    private AccountType accountType;
 
     @ManyToOne (fetch = FetchType.EAGER)
     @JoinColumn (name = "client_id")
@@ -30,16 +32,20 @@ public class Account {
 
     public Account (){}
 
-    public Account(String number, LocalDateTime date, double balance){
+    public Account(String number, LocalDateTime date, double balance, AccountType accountType){
         this.number = number;
         this.creationDate = date;
         this.balance = balance;
+        this.active = true;
+        this.accountType = accountType;
     }
 
-    public Account(String number, LocalDateTime creationDate, double balance, Client client) {
+    public Account(String number, LocalDateTime creationDate, double balance,AccountType accountType, Client client) {
         this.number = number;
         this.creationDate = creationDate;
         this.balance = balance;
+        this.active = true;
+        this.accountType = accountType;
         this.client = client;
     }
 
@@ -54,12 +60,25 @@ public class Account {
 
     public long getId(){return id;}
 
+    public boolean isActive() {return active;}
+    public void setActive(boolean active) {this.active = active;}
+
+    public AccountType getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(AccountType accountType) {
+        this.accountType = accountType;
+    }
+
     @JsonIgnore
     public Client getClient(){return client;}
     public void setClient(Client client){this.client = client;}
 
-    public Set<Transaction> getTransactions() {
-        return transactions;
+    public Set<Transaction> getTransactions() {return transactions;}
+
+    public void setTransactions(Set<Transaction> transactions) {
+        this.transactions = transactions;
     }
 
     public void addTransaction(Transaction transaction){

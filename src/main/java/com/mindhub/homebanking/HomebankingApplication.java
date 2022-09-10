@@ -31,12 +31,12 @@ public class HomebankingApplication {
 	public CommandLineRunner initData(ClientRepository clientRepository, AccountRepository accountRepository, TransactionRepository transactionRepository, LoanRepository loanRepository, ClientLoanRepository clientLoanRepository, CardRepository cardRepository) {
 		return (args) -> {
 
-			Account accountMelba = new Account("VIN-001", LocalDateTime.now(), 5000.00);
-			Account accountMelba2 = new Account("VIN-002", LocalDateTime.now().plusDays(1), 7500.00);
-			Account accountRenzo1 = new Account("VIN-003", LocalDateTime.now(), 420.00);
-			Client clientMelba = new Client("Melba", "Morel", "melbitalaturraka@hotmail.uk", accountMelba, passwordEncoder.encode("clave123"));
-			Client clientRenzo = new Client("Renzo", "Balbo", "renzo.balbo@outlook.com.ar",accountRenzo1, passwordEncoder.encode("clave123"));
-			Client admin = new Client("admin", "admin", "admin@rlbp.com.ar", passwordEncoder.encode("admin"));
+			Account accountMelba = new Account("VIN-001", LocalDateTime.now(), 5000.00, AccountType.CURRENT_ACCOUNT);
+			Account accountMelba2 = new Account("VIN-002", LocalDateTime.now().plusDays(1), 7500.00, AccountType.SAVINGS_ACCOUNT);
+			Account accountRenzo1 = new Account("VIN-003", LocalDateTime.now(),420, AccountType.USD_SAVINGS_ACCOUNT);
+			Client clientMelba = new Client("Melba", "Morel", "melbitalaturraka@hotmail.uk", accountMelba, passwordEncoder.encode("clave123"),true);
+			Client clientRenzo = new Client("Renzo", "Balbo", "renzo.balbo@outlook.com.ar",accountRenzo1, passwordEncoder.encode("clave123"),true);
+			Client admin = new Client("admin", "admin", "admin@rlbp.com.ar", passwordEncoder.encode("admin"),true);
 			clientMelba.addAccount(accountMelba2);
 			clientRepository.save(clientMelba);
 			accountRepository.save(accountMelba);
@@ -78,9 +78,9 @@ public class HomebankingApplication {
 			transactionRepository.save(transactionTest6);
 			transactionRepository.save(transactionTest7);
 
-			Card cardMelba = new Card("Melba Morel", GOLD, CardType.DEBIT, "4045-5000-6891-1023", 792, LocalDateTime.now(), LocalDateTime.now().plusYears(5), clientMelba);
-			Card cardMelba2 = new Card("Melba Morel", TITANIUM, CardType.CREDIT, "4045-7000-5561-0032", 635, LocalDateTime.now(), LocalDateTime.now().plusYears(5), clientMelba);
-			Card cardRenzo = new Card("Renzo Balbo", SILVER, CardType.CREDIT, "4045-5000-6983-1170", 304, LocalDateTime.now(), LocalDateTime.now().plusYears(5), clientRenzo);
+			Card cardMelba = new Card("Melba Morel", GOLD, CardType.DEBIT, "4045-5000-6891-1023", 792, LocalDateTime.now(), LocalDateTime.now().plusYears(5),true, clientMelba);
+			Card cardMelba2 = new Card("Melba Morel", TITANIUM, CardType.CREDIT, "4045-7000-5561-0032", 635, LocalDateTime.now(), LocalDateTime.now().plusYears(5), true, clientMelba);
+			Card cardRenzo = new Card("Renzo Balbo", SILVER, CardType.CREDIT, "4045-5000-6983-1170", 304, LocalDateTime.now(), LocalDateTime.now().plusYears(5), true, clientRenzo);
 
 			cardRepository.save(cardMelba);
 			cardRepository.save(cardMelba2);

@@ -28,6 +28,9 @@ public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
                 if (client.getEmail().contains("@rlbp.com.ar")){
                     return new User(client.getEmail(), client.getPassword(),
                             AuthorityUtils.createAuthorityList("ADMIN"));
+                } else if  (!client.isVerified()){
+                    return new User(client.getEmail(), client.getPassword(),
+                            AuthorityUtils.createAuthorityList("NOT VERIFIED"));
                 } else {
                     return new User(client.getEmail(), client.getPassword(),
                             AuthorityUtils.createAuthorityList("CLIENT"));
