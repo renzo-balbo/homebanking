@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Loan Application</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles/style2.css">
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Work+Sans">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+</head>
+
+<body>
+    <div id="app" class="col-12">
+
+        <header class="col-12 d-flex justify-content-center align-items-center border-bottom">
+
+            <div class="d-flex col">
+                <button class="btn verde ms-1 ms-md-3 d-flex align-items-center justify-content-center" type="button"
+                    data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"
+                    id="offcanvasButton">
+                    <i class="bi bi-list"></i>
+                </button>
+
+                <div class="offcanvas offcanvas-start negro" tabindex="-1" id="offcanvasExample"
+                    aria-labelledby="offcanvasExampleLabel">
+
+                    <div class="offcanvas-header verde">
+                        <h5 class="offcanvas-title" id="offcanvasExampleLabel">RLBP Bank</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+
+                    <div class="offcanvas-body text-white">
+
+                        <div class="list-group">
+                            <h4 class="border-bottom">Account Options</h4>
+                            <a href="./accounts.html" class="list-group-item list-group-item-action negro text-white border-bottom"
+                                aria-current="true">
+                                Accounts
+                            </a>
+
+                            <div class="accordion" id="accordionExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingOne">
+                                        <button
+                                            class="accordion-button list-group-item list-group-item-action negro border-bottom text-white"
+                                            type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                                            aria-expanded="true" aria-controls="collapseOne">
+                                            Transactions
+                                        </button>
+                                    </h2>
+                                    <div id="collapseOne"
+                                        class="accordion-collapse collapse list-group-item list-group-item-action negro text-white border-bottom"
+                                        aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body d-flex flex-column">
+                                            <a v-for="account in client.accounts" style="color: red;"
+                                                :href="'account.html?id='+account.id"
+                                                class="border-bottom">{{account.number}}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <a href="./transfers.html"
+                                class="list-group-item list-group-item-action negro text-white border-bottom">Transfer</a>
+
+                            <a href="#"
+                                class="list-group-item list-group-item-action negro text-white border-bottom">Buy & sell
+                                dollars</a>
+                            <a href="./cards.html"
+                                class="list-group-item list-group-item-action negro text-white border-bottom">Your
+                                cards</a>
+                            <a href="./create-card.html"
+                                class="list-group-item list-group-item-action negro text-white border-bottom">Create new
+                                card</a>
+                            <a href="#"
+                                class="list-group-item list-group-item-action negro text-white border-bottom">Loans</a>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col d-xl-flex d-none justify-content-evenly">
+                <a href="./accounts.html">
+                    <button style="min-height: 2.5rem;"
+                        class="d-flex justify-content-center align-items-center">Accounts</button>
+                </a>
+                <a href="./transfers.html">
+                    <button style="min-height: 2.5rem;"
+                        class="d-flex justify-content-center align-items-center">Transfer</button>
+                </a>
+            </div>
+
+            <div class="d-flex col justify-content-center">
+                <a href="./accounts.html">
+                    <img class="d-none d-md-block" src="./img/logo.png" alt="">
+                    <img class="d-md-none" src="./img/logosmall.png" alt="">
+                </a>
+            </div>
+
+            <div class="col d-xl-flex d-none justify-content-evenly">
+                <a href="./cards.html">
+                    <button style="min-height: 2.5rem;" class="d-flex justify-content-center align-items-center">Your
+                        cards</button>
+                </a>
+                <a href="#">
+                    <button style="min-height: 2.5rem; background-color: red;"
+                        class="d-flex justify-content-center align-items-center text-white">Loans</button>
+                </a>
+            </div>
+
+            <div class="d-flex col justify-content-end me-1 me-md-3">
+
+                <div class="d-flex verde">
+                    <p class="mt-2 me-2 d-none d-lg-flex">Notifications</p>
+                </div>
+                <button class="navButton bg-white verde d-flex align-items-center me-4 justify-content-center">
+                    <i class="bi bi-bell-fill"></i>
+                </button>
+
+                <div class="d-flex verde">
+                    <p class="me-2 mt-2 d-none d-lg-flex">Log out</p>
+                    <button @click="logout"
+                    class="navButton bg-white verde d-flex align-items-center justify-content-center">
+                    <i class="bi bi-power"></i>
+                </button>
+            </div>
+
+
+            </div>
+
+        </header>
+
+        <main class="col-12 d-flex justify-content-center gris">
+
+
+            <div class="col-12 col-md-8">
+
+                <div class="mt-5 animate__animated animate__slideInRight">
+                    <h2>Do you want to ask for a loan?</h2>
+                    <div class="col-12 d-flex justify-content-between align-items-center">
+                        <h3 class="mt-4">These are the ones that we offer:</h3>
+                    </div>
+                </div>
+
+                <!-- -- DIV LOANS  -- -->
+
+
+                <div
+                    class="mt-2 mb-5 d-flex col-12 flex-wrap justify-content-evenly animate__animated animate__slideInRight gap-4 border-bottom">
+
+                    <div v-for="loan in loans" class=" loanCard col d-flex flex-wrap justify-content-center sombra">
+                        <h2 class="verde fw-bold col-12 text-center">{{loan.name}}</h2>
+                        <h3 class="text-center col-12">Max amount to request:</h3>
+                        <h2 class="verde">{{loan.maxAmount}}</h2>
+                        <div class="col-12 d-flex flex-wrap justify-content-evenly">
+                            <h4 class="col-12 text-center">Payments*:</h4>
+                            <div v-for="payment in loan.payments"
+                                class="loanPayments d-flex flex-wrap justify-content-center align-items-center fs-4">
+                                <i class="bi bi-receipt col-12 text-center fw-bold verde"></i>
+                                <p>{{payment}}</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <h6 class="col-12 mt-2" style="font-size: .8rem;">*All loans have a starter interest of 20% and
+                        depending the selected amount of payments it may change. When creating the request for the
+                        desired loan you will be indicated the corresponding rate of interest.</h6>
+
+                </div>
+
+
+
+                <section v-else class="col-12 mt-4 mb-5">
+                    <h3>Did you know that you can apply for a loan?</h3>
+
+                    <div class="card mt-5 mb-4 sombra animate__animated animate__slideInRight mb-3">
+                        <div class="d-flex flex-column flex-lg-row g-0 flex-wrap">
+                            <div class="col-12 col-xxl-8">
+                                <div class="card-body">
+                                    <h5 class="card-title fs-1 fw-bold mt-5 mb-4" style="color: red; font-style: italic;" >How can I apply for a loan?</h5>
+                                    <p class="fs-3"><span>Applying for a loan is similar to applying for a credit or debit card. You'll need to enter your personal information, your financial information and the details about your desired loan. Before approving you, the lender will run a hard credit check, which may temporarily lower your credit score. If your financial picture and credit score are sufficient for the lender — often, you need a credit score in the mid-600s — the lender will set your interest rate, loan amount and terms</span></p>
+                                </div>
+                            </div>
+                            <div class="col-12 d-md-none d-xxl-flex col-xxl-4">
+                                <img src="./img/thinking.png" class="img-fluid rounded-start rounded-end"
+                                    alt="A man pointing to the RLBP Bank logo">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+
+                <!-- -- LOAN CREATION --  -->
+
+                <form class="d-flex g-2 mt-3 flex-wrap bg-white p-2 mb-5" @submit.prevent="" id="requestLoanForm">
+                    <h3 class="mb-3 verde fw-bold col-12">Let's request a loan!</h3>
+
+                    <div class="col-12 col-lg-6 flex-column align-items-center">
+
+                        <!-- SELECT A LOAN -->
+                        <p class="col-12 fs-4" style="color: grey;">Type of loan</p>
+                        <div class="col-10 border-bottom d-flex justify-content-center bordeRojo flex-wrap">
+                            <select v-model="selectedLoan" class="form-select pb-2 mb-2" id="selectedLoan">
+                                <option selected disabled>Loan...</option>
+                                <option v-for="loan in loans" :value="loan.id">{{loan.name}}</option>
+                            </select>
+                        </div>
+                        <!-- ENTER THE AMOUNT  -->
+                        <p class="col-12 fs-4" style="color: grey;">Requested amount</p>
+                        <div class=" mt-4 col-10 border-bottom d-flex flex-wrap justify-content-center bordeRojo">
+                            <div class="col-12 d-flex">
+                                <span class="fs-1 col-1">$</span> <input v-model="loanAmount" type="number" min="0"
+                                    name="loanAmount" id="loanAmount" class="border-0 fs-1 col-11"
+                                    oninput="validity.valid||(value='')" placeholder="00.00">
+                            </div>
+                        </div>
+                        <!-- SELECT AN ACCOUNT  -->
+                        <p class="col-12 fs-4" style="color: grey;">Account</p>
+                        <div class="col-10 bordeRojo border-bottom">
+                            <select class="form-select pb-2 mb-2" v-model="loanDestinyAccount" id="loanDestinyAccount">
+                                <option selected disabled hidden>Account...</option>
+                                <option v-for="account in accounts" :disabled="account.number == originAccount"
+                                    :value="account.number">{{account.number}} Balance:
+                                    {{account.balance}}</option>
+                            </select>
+                        </div>
+                        <!-- SELECT PAYMENTS  -->
+                        <p class="col-12 fs-4" style="color: grey;">Payments</p>
+                        <div v-for="loan in loans" :class="loan.id==selectedLoan? 'd-flex' : 'd-none'"
+                            class="mt-4 col-10 border-bottom d-flex flex-wrap justify-content-evenly bordeRojo">
+                            <div v-for="payment in loan.payments" v-if="loan.id==selectedLoan"
+                                class="d-flex justify-content-center align-items-center">
+                                <input type="radio" name="payment" :id="payment" :value="payment"
+                                    v-model="selectedLoanPayments">
+                                <label class="ms-1 me-1" for="payment">{{payment}}</label>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+                    </div>
+
+                    <div v-if="selectedLoan==0" class="col-12 col-lg-6 flex-column flex-wrap justify-content-center text-center">
+                        <span class="verde" style="font-size: 7rem;"><i class="bi bi-piggy-bank"></i></span>
+                        <h3 class="text-center">Here you'll see a preview of the loan when you start filling the form!</h3>
+                    </div>
+
+                    <section v-for="loan in loans" v-if="selectedLoan!=0" class="col-12 col-lg-6 flex-wrap justify-content-start" :class="loan.id == selectedLoan ? 'd-flex' : 'd-none'">
+                        <h3 class="fw-semibold p-3 col-12">{{loan.name}}</h3>
+
+                        <article v-if="loan.name=='Personal Loan'" class="col-12 flex-column ps-3">
+                            <h4>Interest Rates:</h4>
+                            <p v-for="payments in loan.payments">{{payments}} payments..................
+                                <span v-if="payments == 6">20%</span>
+                            <span v-if="payments == 12">22%</span>
+                            <span v-if="payments ==24">25%</span>
+                            <span v-if="payments ==36">30%</span>
+                            </p>
+                        </article>
+
+                        <article v-if="loan.name=='Automobile Loan'" class="col-12 flex-column ps-3">
+                            <h4>Interest Rates:</h4>
+                            <p v-for="payments in loan.payments">{{payments}} payments..................
+                                <span v-if="payments == 6">20%</span>
+                            <span v-if="payments == 12">23%</span>
+                            <span v-if="payments ==24">27%</span>
+                            <span v-if="payments ==36">32%</span>
+                            </p>
+                        </article>
+
+                        <article v-if="loan.name=='Mortgage Loan'" class="col-12 flex-column ps-3">
+                            <h4>Interest Rates:</h4>
+                            <p v-for="payments in loan.payments">{{payments}} payments..................
+                                <span v-if="payments == 12">20%</span>
+                            <span v-if="payments == 24">25%</span>
+                            <span v-if="payments ==36">30%</span>
+                            <span v-if="payments ==48">35%</span>
+                            <span v-if="payments ==60">40%</span>
+                            </p>
+                        </article>
+                        <article>
+                            <h4>You'll recive {{moneyFormatter(loanAmount)}} in the account {{loanDestinyAccount}}</h4>
+                            <h5></h5>
+                            <h6 v-if="selectedLoanPayments!=0">The total amount that you'll have to pay is {{loanInterest}}</h6>
+
+                            
+                        </article>
+
+                    </section>
+
+                    
+
+                    <div class="col-12 d-flex justify-content-center mt-4">
+                        <button style="height: 3rem; width: 8rem;"
+                            class="d-flex justify-content-center align-items-center" @click="confirmLoan">Confirm Loan</button>
+                    </div>
+                </form>
+
+
+            </div>
+        </main>
+
+        <footer class="bg-dark col-12 d-flex align-items-center justify-content-center">
+            <h6 class="verde me-4">Developed by &copy;RLBP</h6>
+        </footer>
+
+    </div>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="./js/accounts.js"></script>
+</body>
+
+</html>
