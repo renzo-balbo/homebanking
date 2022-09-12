@@ -10,8 +10,13 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
+
+import static com.mindhub.homebanking.models.CardColor.*;
 
 @RestController
 @RequestMapping("/api")
@@ -30,6 +35,7 @@ public class CardController {
 
         Client client = clientService.getClientByEmail(authentication.getName());
         List<Card> activeCards = client.getCards().stream().filter(card -> card.isActive()==true).collect(Collectors.toList());
+
         if (activeCards.stream().filter(card -> card.getType().equals(cardType)).count() > 2){
             return new ResponseEntity<>("Clients can only have 3 cards of each type.", HttpStatus.FORBIDDEN);
         }

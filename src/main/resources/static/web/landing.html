@@ -23,45 +23,12 @@
       <div class="col-12 d-flex justify-content-center align-items-center  border-bottom pt-3 pb-3">
 
         <div class="d-flex col">
-          <button class="btn verde ms-1 ms-md-3 d-flex align-items-center justify-content-center" type="button"
-            data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"
-            id="offcanvasButton">
-            <i class="bi bi-list"></i>
-          </button>
+        
 
-          <div class="offcanvas offcanvas-start negro" tabindex="-1" id="offcanvasExample"
-            aria-labelledby="offcanvasExampleLabel">
-
-            <div class="offcanvas-header verde">
-              <h5 class="offcanvas-title" id="offcanvasExampleLabel">RLBP Bank</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-
-            <div class="offcanvas-body text-white">
-
-              <div class="list-group">
-                <h4 class="border-bottom">Account Options</h4>
-                <a href="#" class="list-group-item list-group-item-action negro text-white border-bottom"
-                  aria-current="true">
-                  Accounts
-                </a>
-                <a href="#"
-                  class="list-group-item list-group-item-action negro text-white border-bottom">Transactions</a>
-                <a href="#" class="list-group-item list-group-item-action negro text-white border-bottom">Buy & sell
-                  dollars</a>
-                <a href="#" class="list-group-item list-group-item-action negro text-white border-bottom">Get a new
-                  card</a>
-                <a href="#" class="list-group-item list-group-item-action negro text-white border-bottom">Loans</a>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
+        </div> 
 
         <div class="d-flex col justify-content-center">
-          <a href="./accounts.html">
+          <a href="#">
             <img class="d-none d-md-block" src="./img/logo.png" alt="">
             <img class="d-md-none" src="./img/logosmall.png" alt="">
           </a>
@@ -69,9 +36,10 @@
 
         <div class="d-flex col justify-content-end me-1 me-md-3">
 
-          <a href="./index.html" class="">
+          <a class="d-flex verde" href="./index.html">
+            <p class="me-2 mt-2 d-none d-lg-flex">Sign in / Sign up</p>
             <button class="navButton bg-white verde d-flex align-items-center justify-content-center">
-              <i class="bi bi-person-fill"></i>
+                <i class="bi bi-power"></i>
             </button>
           </a>
 
@@ -174,14 +142,14 @@
 
         <!-- -- BENEFITS --  -->
 
-        <section class="col-9 card bg-white d-flex flex-wrap mb-5" >
+        <section class="col-9 card bg-white d-flex flex-wrap mb-5 d-none d-md-flex" >
           <h2 class="col-12 m-4" style="color: red;">Being our client you unlock benefits such as...</h2>
           <div class="col-12 d-flex flex-wrap g-2">
 
             <div class="col-6 d-flex flex-wrap justify-content-evenly">
               <article class="col-5 card d-flex flex-wrap align-items-start m-3 border border-dark">
                 <h2 style="font-size: 6rem;" class="col-12 text-center">30%</h2>
-                <p class="text-center"><span class="fw-bolder">discount top every friday in participating stores.</span> Only available using debit or credit card and with a maximum on $1000</p>
+                <p class="text-center"><span class="fw-bolder">discount top every friday in participating stores.</span> Only available using debit or credit card and with a maximum of $1000</p>
                 <div class="col-12" style="height: 8rem;" id="participatingStore"></div>
               </article>
 
@@ -197,6 +165,15 @@
 
               </div>
 
+            </div>
+
+            <div class="col-6 h-100 container-fluid">
+              <div id="atencionAlCliente" class="mt-3 d-flex justify-content-end align-items-center flex-wrap">
+                <div class="col-5 me-5" style="background-color: rgba(0, 0, 0, 0.2);">
+                  <h2 class="">Atencion <span class="verde">personalizada</span> las 24 horas del dia!</h2>
+                </div>
+              </div>
+            
             </div>
 
 
