@@ -63,8 +63,10 @@ public class ClientController {
         if (clientService.getClientByEmail(email)!=null){
             return new ResponseEntity<>("This email belongs to an existing client.", HttpStatus.FORBIDDEN);
         }
-
-        Client client = new Client(firstName, lastName, email, passwordEncoder.encode(password));
+        String normalizedFirstName = firstName.toUpperCase().charAt(0)+firstName.substring(1, firstName.length()).toLowerCase();
+        String normalizedLastName = lastName.toUpperCase().charAt(0)+lastName.substring(1, lastName.length()).toLowerCase();
+        String normalizedEmail = email.toLowerCase();
+        Client client = new Client(normalizedFirstName, normalizedLastName, normalizedEmail, passwordEncoder.encode(password));
         clientService.saveClient(client);
         String accountNumber = "VIN-"+getRandomNumber(1,99999999);
         while(accountService.findByAccountNumber(accountNumber) != null){
