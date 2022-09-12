@@ -24,15 +24,21 @@ createApp({
             this.logContainer.classList.toggle("sign-up-mode")
         },
         login(email, password) {
-            // axios.post("/api/logout")
-            axios.post("/api/login", `email=${email}&password=${password}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
-                .then(response => window.location.href = "./accounts.html")
+            axios.post("/api/logout")
+            .then(()=>{
+
+                axios.post("/api/login", `email=${email}&password=${password}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
+                .then(response => {
+                    console.log(response)
+                    // window.location.href = "./accounts.html"
+                })
                 .catch(error => {
                     swal("There was an error with your email or password. Please try again.",{
                         dangerMode:true
                     });
                     console.log("Error:",error.response.status,"Code:",error.code)
-                    })
+                })
+            })
 
         },
         signUp() {

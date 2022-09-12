@@ -1,5 +1,8 @@
 package com.mindhub.homebanking.configurations;
 
+import com.mindhub.homebanking.models.Client;
+import com.mindhub.homebanking.service.ClientService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -15,6 +18,7 @@ import javax.servlet.http.HttpSession;
 @EnableWebSecurity
 @Configuration
 public class WebAuthorization  extends WebSecurityConfigurerAdapter {
+
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http.authorizeRequests()

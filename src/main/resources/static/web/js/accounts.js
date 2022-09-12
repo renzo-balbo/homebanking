@@ -48,6 +48,7 @@ createApp({
           this.clientLoans = this.client.loans.sort((a, b) => b.id - a.id)
           this.cards = this.client.cards.filter(card => card.active == true).sort((a, b) => a.id - b.id)
           this.loadLoansData()
+          this.normalizeCardsDate(this.cards)
         })
     },
 

@@ -62,9 +62,13 @@ createApp({
       this.toDate = new Date(this.toDate).toISOString()
       axios.post('/api/transactions/filtered', {fromDate:`${this.fromDate}`,toDate:`${this.toDate}`,accountNumber:`${this.account.number}`})
       .then(response=>{
-        console.log(response)
+        swal(response.data, {
+          icon: "success",
+          dangerMode: true
+        })
+        setTimeout(function () { window.location.href = "./accounts.html" }, 2500)
       })
-      .catch(error=>console.log(error.response.data))
+      .catch(error=>console.log(error))
     },
 
     logout() {
