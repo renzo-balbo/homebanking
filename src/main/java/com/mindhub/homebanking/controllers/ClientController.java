@@ -74,7 +74,7 @@ public class ClientController {
         accountService.saveAccount(account);
 
         String mailSubject = "RLBP Verification Email";
-        String mailBody = "Hey! We are so close to complete your account registration, just one more thing to do. We need you to go to this link: localhost:8080/web/verification.html?id="+client.getId();
+        String mailBody = "Hey! We are so close to complete your account registration, just one more thing to do. We need you to go to this link: https://hhomebanking-rlbp.herokuapp.com/web/verification.html?id="+client.getId();
         clientService.sendVerificationEmail(client.getEmail(),mailSubject,mailBody);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
