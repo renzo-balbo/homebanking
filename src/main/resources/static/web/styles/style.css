@@ -212,3 +212,18 @@ footer{
 }
 
 
+@media (max-width: 579px){
+    .carousel, .carousel img, .carousel-item{
+        height: 30vh;
+    }
+}
+
+@media(max-width: 1200px){
+    .carousel, .carousel img, .carousel-item{
+        height: 30vh;
+    }
+
+    /* .carousel-caption{
+        width:10vw;
+    } */
+}
