@@ -63,6 +63,7 @@ public class ClientController {
         if (clientService.getClientByEmail(email)!=null){
             return new ResponseEntity<>("This email belongs to an existing client.", HttpStatus.FORBIDDEN);
         }
+
         String normalizedFirstName = firstName.toUpperCase().charAt(0)+firstName.substring(1, firstName.length()).toLowerCase();
         String normalizedLastName = lastName.toUpperCase().charAt(0)+lastName.substring(1, lastName.length()).toLowerCase();
         String normalizedEmail = email.toLowerCase();
