@@ -26,7 +26,7 @@ createApp({
         login(email, password) {
             axios.post("/api/logout")
             .then(()=>{
-                axios.post("/api/login", `email=${email}&password=${password}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
+                axios.post("/api/login", `email=${email}&password=${password}`)
                 .then(response => {
                     console.log(response)
                     window.location.href = "./accounts.html"
@@ -41,8 +41,8 @@ createApp({
 
         },
         signUp() {
-            axios.post('/api/clients', `firstName=${this.newFirstName}&lastName=${this.newLastName}&email=${this.newMail}&password=${this.newPassword}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
-            // .then(response => axios.post("/api/login", `email=${this.newMail}&password=${this.newPassword}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } }))
+            axios.post('/api/clients', `firstName=${this.newFirstName}&lastName=${this.newLastName}&email=${this.newMail}&password=${this.newPassword}`)
+            // .then(response => axios.post("/api/login", `email=${this.newMail}&password=${this.newPassword}`))
             .then(response => window.location.href = "./to-verify.html")
             .catch(error =>{
                 console.log(error)

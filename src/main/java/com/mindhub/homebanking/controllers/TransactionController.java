@@ -129,6 +129,7 @@ public class TransactionController {
                 Font.NORMAL);
         try {
             Document document = new Document(PageSize.A4);
+
             String route = System.getProperty("user.home");
             PdfWriter.getInstance(document, new FileOutputStream(route + "/Desktop/Transaction_Report.pdf"));
 
